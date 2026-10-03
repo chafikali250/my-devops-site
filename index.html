@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali CHAFIK | Ingénieur de Production & DevOps</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            cyan: '#00f2fe',
+                            blue: '#4facfe',
+                            purple: '#7f53ac',
+                            accent: '#38ef7d',
+                            dark: '#080b11',
+                            card: '#0f172a',
+                            border: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080b11;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(51, 65, 85, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 242, 254, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 242, 254, 0.15);
+        }
+
+        .tech-badge {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .tech-badge:hover {
+            background: rgba(0, 242, 254, 0.15);
+            border-color: #00f2fe;
+            color: #ffffff;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #080b11;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00f2fe;
+        }
+
+        .terminal-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .terminal-scroll::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+        }
+
+        .scanlines {
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 3px, 6px 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-black">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800/80 px-4 lg:px-8 py-3 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-mono font-bold text-slate-950 text-xl shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+                    AC
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight text-white group-hover:text-cyan-400 transition-colors">Ali CHAFIK</span>
+                    <span class="block text-xs text-slate-400 font-mono">Ingénieur Production & DevOps</span>
+                </div>
+            </a>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">À propos</a>
+                <a href="#terminal" class="hover:text-cyan-400 transition-colors">Terminal CLI</a>
+                <a href="#stack" class="hover:text-cyan-400 transition-colors">Tech Stack</a>
+                <a href="#pipeline" class="hover:text-cyan-400 transition-colors">CI/CD Pipeline</a>
+                <a href="#devops-guide" class="hover:text-cyan-400 transition-colors">Guide Project DevOps</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="px-4 py-2 text-xs md:text-sm font-mono font-semibold rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 hover:brightness-110 shadow-lg shadow-cyan-500/20 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Contact
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2" aria-label="Toggle Menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 mt-3 pt-4 pb-2 space-y-3 px-2 font-medium">
+            <a href="#about" class="block text-slate-300 hover:text-cyan-400 py-1">À propos</a>
+            <a href="#terminal" class="block text-slate-300 hover:text-cyan-400 py-1">Terminal CLI</a>
+            <a href="#stack" class="block text-slate-300 hover:text-cyan-400 py-1">Tech Stack</a>
+            <a href="#pipeline" class="block text-slate-300 hover:text-cyan-400 py-1">CI/CD Pipeline</a>
+            <a href="#devops-guide" class="block text-slate-300 hover:text-cyan-400 py-1">Guide Project DevOps</a>
+        </div>
+    </nav>
+
+    <section id="about" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-30"></div>
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                        <span>Disponible pour Opportunités • France 🇫🇷</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        Ali <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent glow-text">CHAFIK</span>
+                    </h1>
+
+                    <p class="text-xl sm:text-2xl font-mono text-cyan-300/90 font-medium">
+                        Ingénieur de Production & DevOps
+                    </p>
+
+                    <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Spécialiste dans la conception, l'automatisation, le déploiement et l'exploitation des infrastructures Cloud & Hybrides. Expert en intégration CI/CD, conteneurisation, GitOps, ordonnancement de batchs (<strong class="text-slate-200">Control-M</strong>) et observabilité.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="glass-card p-3 rounded-xl border border-slate-800">
+                            <div class="text-cyan-400 font-mono text-xl font-bold">Azure & AWS</div>
+                            <div class="text-slate-400 text-xs">IaC & Terraform</div>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border border-slate-800">
+                            <div class="text-purple-400 font-mono text-xl font-bold">K8s & GitOps</div>
+                            <div class="text-slate-400 text-xs">Argo CD & Docker</div>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl border border-slate-800">
+                            <div class="text-emerald-400 font-mono text-xl font-bold">Control-M</div>
+                            <div class="text-slate-400 text-xs">Production & Jobs</div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#pipeline" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-semibold font-mono hover:scale-105 transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2">
+                            <i class="fa-solid fa-play text-sm"></i> Simulation CI/CD
+                        </a>
+                        <a href="#devops-guide" class="px-6 py-3 rounded-xl glass-card text-slate-200 font-medium hover:text-cyan-400 hover:border-cyan-500/40 transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-cyan-400"></i> Guide Projet Azure/Terraform
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="glass-panel p-6 rounded-2xl border border-slate-800 shadow-2xl relative overflow-hidden">
+                            <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                                    <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                                </div>
+                                <span class="font-mono text-xs text-slate-500">production-cluster-status.yaml</span>
+                            </div>
+
+                            <div class="space-y-4 font-mono text-xs">
+                                <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center gap-2 text-cyan-400">
+                                        <i class="fa-brands fa-linux text-base"></i>
+                                        <span>RHEL / Ubuntu Systems</span>
+                                    </div>
+                                    <span class="text-emerald-400 text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">ONLINE</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center gap-2 text-blue-400">
+                                        <i class="fa-brands fa-docker text-base"></i>
+                                        <span>Kubernetes / ArgoCD</span>
+                                    </div>
+                                    <span class="text-emerald-400 text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">SYNCED</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center gap-2 text-amber-400">
+                                        <i class="fa-solid fa-clock-rotate-left text-base"></i>
+                                        <span>Control-M Workloads</span>
+                                    </div>
+                                    <span class="text-cyan-400 text-[10px] bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">SCHEDULED</span>
+                                </div>
+
+                                <div class="p-3 rounded-lg bg-slate-950/80 border border-slate-800 flex items-center justify-between">
+                                    <div class="flex items-center gap-2 text-purple-400">
+                                        <i class="fa-solid fa-chart-line text-base"></i>
+                                        <span>Prometheus & ELK</span>
+                                    </div>
+                                    <span class="text-emerald-400 text-[10px] bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">HEALTHY</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono text-slate-400">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cyan-400"></i> DevSecOps Compliant</span>
+                                <span class="text-cyan-400">99.99% Uptime</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="terminal" class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="mb-8 text-center">
+                <h2 class="text-3xl font-bold text-white font-mono flex items-center justify-center gap-3">
+                    <i class="fa-solid fa-terminal text-cyan-400"></i> Terminal Linux CLI
+                </h2>
+                <p class="text-slate-400 text-sm mt-2">Tapez des commandes ou utilisez les raccourcis pour explorer les informations.</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto glass-panel rounded-2xl border border-slate-800 shadow-2xl overflow-hidden relative">
+                <div class="scanlines absolute inset-0 rounded-2xl z-20"></div>
+
+                <div class="bg-slate-950 px-4 py-3 border-b border-slate-800 flex items-center justify-between relative z-30">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500/90 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500/90 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500/90 inline-block"></span>
+                        <span class="ml-2 font-mono text-xs text-slate-400">ali@chafik-devops-node:~ (bash)</span>
+                    </div>
+                    <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300 font-mono transition-colors">
+                        <i class="fa-solid fa-trash-can mr-1"></i> clear
+                    </button>
+                </div>
+
+                <div class="bg-slate-900/90 px-4 py-2 border-b border-slate-800/60 flex flex-wrap gap-2 text-xs font-mono relative z-30">
+                    <span class="text-slate-500 py-1">Quick Run:</span>
+                    <button onclick="runCommand('cat info.txt')" class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300 hover:bg-cyan-500/20 border border-slate-700">cat info.txt</button>
+                    <button onclick="runCommand('skills')" class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300 hover:bg-cyan-500/20 border border-slate-700">skills</button>
+                    <button onclick="runCommand('control-m')" class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300 hover:bg-cyan-500/20 border border-slate-700">control-m</button>
+                    <button onclick="runCommand('contact')" class="px-2.5 py-1 rounded bg-slate-800 text-cyan-300 hover:bg-cyan-500/20 border border-slate-700">contact</button>
+                </div>
+
+                <div id="terminal-body" class="p-5 font-mono text-sm min-h-[300px] max-h-[400px] overflow-y-auto terminal-scroll text-slate-200 space-y-3 relative z-30">
+                    <div>
+                        <span class="text-cyan-400">Welcome to Ali CHAFIK DevOps Shell [v2.4.0-release]</span><br>
+                        <span class="text-slate-400">Tapez <span class="text-emerald-400">'help'</span> pour afficher les commandes disponibles.</span>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-950 border-t border-slate-800 flex items-center gap-2 relative z-30">
+                    <span class="font-mono text-emerald-400 font-bold">ali@chafik-devops:~$</span>
+                    <input type="text" id="terminal-input" class="bg-transparent text-slate-100 font-mono text-sm focus:outline-none w-full" placeholder="Tapez une commande (ex: help, skills, contact)..." autocomplete="off" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stack" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyan-400 font-mono text-sm tracking-widest uppercase">Écosystème Technique</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Stack DevOps & Production</h2>
+                <p class="text-slate-400 mt-3">Compétences clés maîtrisées pour l'administration système, l'automatisation, le Cloud et l'ordonnancement.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Cloud & IaC</h3>
+                            <p class="text-xs text-slate-400">Provisioning & Multi-Cloud</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-microsoft text-blue-400"></i> Azure</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-aws text-orange-400"></i> AWS</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-cubes text-purple-400"></i> Terraform</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-terminal text-red-400"></i> Ansible</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Conteneurs & Orchestration</h3>
+                            <p class="text-xs text-slate-400">Microservices Runtime</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-docker text-blue-400"></i> Docker</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-dharmachakra text-cyan-400"></i> Kubernetes</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-box text-sky-300"></i> Helm</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-code-merge"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">CI/CD & GitOps</h3>
+                            <p class="text-xs text-slate-400">Automation & Delivery</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-git-alt text-orange-500"></i> Git</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-github text-white"></i> GitHub Actions</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-gitlab text-orange-400"></i> GitLab CI</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-jenkins text-red-400"></i> Jenkins</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-infinity text-cyan-300"></i> Argo CD</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Observabilité</h3>
+                            <p class="text-xs text-slate-400">Metrics & Logs</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-fire text-orange-400"></i> Prometheus</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-chart-line text-amber-300"></i> Grafana</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-magnifying-glass text-amber-300"></i> ELK Stack</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Ingénierie de Production</h3>
+                            <p class="text-xs text-slate-400">Workload Scheduling</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2 border border-amber-500/30 text-amber-300"><i class="fa-solid fa-gear text-amber-400"></i> Control-M</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-list-check text-slate-300"></i> Batch Processing</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation text-rose-400"></i> MCO & Incidents</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-white">Système & Scripting</h3>
+                            <p class="text-xs text-slate-400">OS Administration</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-linux text-yellow-400"></i> Linux (RHEL/Ubuntu)</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-solid fa-terminal text-cyan-400"></i> Bash Shell</span>
+                        <span class="tech-badge px-3 py-2 rounded-lg text-xs font-mono flex items-center gap-2"><i class="fa-brands fa-python text-blue-400"></i> Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pipeline" class="py-20 bg-slate-950/60 border-y border-slate-800 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-cyan-400 font-mono text-sm tracking-widest uppercase">Simulateur Live</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Pipeline de Déploiement CI/CD</h2>
+                <p class="text-slate-400 mt-2">Simulez le workflow d'intégration et de livraison continue géré automatiquement.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mb-8">
+                <div id="step-1" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">1</div>
+                    <div class="font-mono text-xs font-bold text-white">Git Push</div>
+                    <div class="text-[10px] text-slate-400 mt-1">GitHub / GitLab</div>
+                </div>
+
+                <div id="step-2" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">2</div>
+                    <div class="font-mono text-xs font-bold text-white">CI Build</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Jenkins / Actions</div>
+                </div>
+
+                <div id="step-3" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">3</div>
+                    <div class="font-mono text-xs font-bold text-white">Image & IaC</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Docker & Terraform</div>
+                </div>
+
+                <div id="step-4" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">4</div>
+                    <div class="font-mono text-xs font-bold text-white">GitOps Sync</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Argo CD Manifests</div>
+                </div>
+
+                <div id="step-5" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">5</div>
+                    <div class="font-mono text-xs font-bold text-white">K8s Cluster</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Azure AKS / AWS</div>
+                </div>
+
+                <div id="step-6" class="glass-card p-4 rounded-xl border border-slate-800 text-center transition-all">
+                    <div class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 mx-auto mb-2 flex items-center justify-center font-mono text-sm font-bold">6</div>
+                    <div class="font-mono text-xs font-bold text-white">Observabilité</div>
+                    <div class="text-[10px] text-slate-400 mt-1">Prometheus & Grafana</div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-4">
+                    <button id="start-pipeline-btn" onclick="startPipelineSimulation()" class="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-400 to-cyan-500 text-slate-950 font-mono font-bold hover:brightness-110 shadow-lg shadow-emerald-500/20 transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-play"></i> Lancer la Simulation Pipeline
+                    </button>
+                    <span id="pipeline-status" class="font-mono text-xs text-slate-400">Statut: En attente...</span>
+                </div>
+
+                <div class="glass-panel rounded-xl p-4 font-mono text-xs text-slate-300 h-48 overflow-y-auto border border-slate-800 terminal-scroll" id="pipeline-console">
+                    <div class="text-slate-500">[INFO] Pipeline prêt pour l'exécution... Cliquez sur "Lancer la Simulation Pipeline".</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="devops-guide" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-cyan-400 font-mono text-sm tracking-widest uppercase">Guide Pratique</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Architecture du Projet DevOps sur Azure</h2>
+                <p class="text-slate-400 mt-3">Voici la structure complète pour héberger ce portfolio sur Azure en utilisant Docker, Terraform et GitHub Actions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Dockerfile snippet -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-cyan-400 font-bold">
+                        <span><i class="fa-brands fa-docker mr-2"></i>1. Dockerfile (Nginx)</span>
+                        <span class="text-slate-500 text-[10px]">Docker</span>
+                    </div>
+                    <pre class="text-slate-300 whitespace-pre-wrap leading-relaxed">
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+</pre>
+                </div>
+
+                <!-- Terraform snippet -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-purple-400 font-bold">
+                        <span><i class="fa-solid fa-cubes mr-2"></i>2. main.tf (Azure)</span>
+                        <span class="text-slate-500 text-[10px]">Terraform</span>
+                    </div>
+                    <pre class="text-slate-300 whitespace-pre-wrap leading-relaxed">
+provider "azurerm" {
+  features {}
+}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "rg-portfolio-ali"
+  location = "France Central"
+}
+
+resource "azurerm_service_plan" "appserviceplan" {
+  name                = "asp-portfolio"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  os_type             = "Linux"
+  sku_name            = "F1" # Free tier
+}
+</pre>
+                </div>
+
+                <!-- CI/CD snippet -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 font-mono text-xs">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800 text-emerald-400 font-bold">
+                        <span><i class="fa-solid fa-diagram-project mr-2"></i>3. deploy.yml</span>
+                        <span class="text-slate-500 text-[10px]">GitHub Actions</span>
+                    </div>
+                    <pre class="text-slate-300 whitespace-pre-wrap leading-relaxed">
+name: Build and Deploy to Azure
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Deploy to Azure App Service
+      run: echo "Deployed portfolio to Azure!"
+</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="max-w-4xl mx-auto glass-panel p-8 sm:p-12 rounded-3xl border border-slate-800 text-center relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <span class="text-cyan-400 font-mono text-sm tracking-widest uppercase">Contact Direct</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-4">Travaillons Ensemble</h2>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base mb-8">
+                    Basé en <strong class="text-white">France</strong>, disponible pour vos projets DevOps, Cloud Administration & Ingénierie de Production.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-8">
+                    <div onclick="copyText('chafikali250@gmail.com')" class="glass-card p-4 rounded-xl border border-slate-800 hover:border-cyan-500/50 cursor-pointer transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3 text-left">
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Email Direct</div>
+                                <div class="font-mono text-sm text-white font-semibold">chafikali250@gmail.com</div>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-500 group-hover:text-cyan-400 transition-colors"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+
+                    <div onclick="copyText('+33780822579')" class="glass-card p-4 rounded-xl border border-slate-800 hover:border-cyan-500/50 cursor-pointer transition-all flex items-center justify-between group">
+                        <div class="flex items-center gap-3 text-left">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400">Téléphone (France)</div>
+                                <div class="font-mono text-sm text-white font-semibold">+33 7 80 82 25 79</div>
+                            </div>
+                        </div>
+                        <span class="text-xs text-slate-500 group-hover:text-emerald-400 transition-colors"><i class="fa-regular fa-copy"></i></span>
+                    </div>
+                </div>
+
+                <div id="copy-toast" class="hidden inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-mono text-xs">
+                    <i class="fa-solid fa-circle-check"></i> Information copieuse dans le presse-papier!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-slate-800 text-center text-xs font-mono text-slate-500">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© Ali CHAFIK • Ingénieur de Production & DevOps • France</p>
+            <p class="mt-1 text-slate-600">Built with HTML5, Tailwind CSS, JavaScript & DevOps Engineering Passion</p>
+        </div>
+    </footer>
+
+    <script>
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        function copyText(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        const terminalBody = document.getElementById('terminal-body');
+        const terminalInput = document.getElementById('terminal-input');
+
+        const commands = {
+            'help': `Commandes disponibles:<br>
+  - <span class="text-cyan-300">cat info.txt</span> : Profil d'Ali CHAFIK<br>
+  - <span class="text-cyan-300">skills</span>       : Liste des compétences DevOps<br>
+  - <span class="text-cyan-300">control-m</span>    : Statut des jobs de production<br>
+  - <span class="text-cyan-300">contact</span>     : Coordonnées téléphoniques et email<br>
+  - <span class="text-cyan-300">clear</span>       : Efface la console`,
+            
+            'cat info.txt': `NOM: Ali CHAFIK<br>
+POSTE: Ingénieur de Production et DevOps<br>
+PAYS: France 🇫🇷<br>
+EXPERTISE: Linux, Git, Docker, Kubernetes, Terraform, Ansible, Azure, AWS, CI/CD, Argo CD, Control-M, Prometheus, Grafana, ELK Stack.`,
+
+            'skills': `<span class="text-cyan-400">[Cloud & IaC]</span>: Azure, AWS, Terraform, Ansible<br>
+<span class="text-purple-400">[Conteneurs]</span>: Docker, Kubernetes, Helm<br>
+<span class="text-emerald-400">[CI/CD & GitOps]</span>: Git, GitHub Actions, GitLab CI, Jenkins, Argo CD<br>
+<span class="text-amber-400">[Production]</span>: Control-M Batch Scheduling, Linux RHEL/Ubuntu<br>
+<span class="text-red-400">[Observabilité]</span>: Prometheus, Grafana, ELK Stack`,
+
+            'control-m': `<span class="text-emerald-400">[Control-M Agent Status]</span>: ONLINE<br>
+Active Scheduled Jobs: 142<br>
+Status: All Batch cycles running nominally (0 Errors).`,
+
+            'contact': `Email: <span class="text-cyan-300">chafikali250@gmail.com</span><br>
+Téléphone: <span class="text-emerald-300">+33 7 80 82 25 79</span><br>
+Localisation: France`
+        };
+
+        function runCommand(cmdText) {
+            const trimmed = cmdText.trim().toLowerCase();
+            
+            const promptLine = document.createElement('div');
+            promptLine.innerHTML = `<span class="text-emerald-400 font-bold">ali@chafik-devops:~$</span> <span class="text-white">${cmdText}</span>`;
+            terminalBody.appendChild(promptLine);
+
+            const responseLine = document.createElement('div');
+            responseLine.className = 'text-slate-300 pl-2 border-l-2 border-cyan-500/40 my-1';
+
+            if (trimmed === 'clear') {
+                terminalBody.innerHTML = '';
+                return;
+            } else if (commands[trimmed]) {
+                responseLine.innerHTML = commands[trimmed];
+            } else if (trimmed === '') {
+                return;
+            } else {
+                responseLine.innerHTML = `<span class="text-rose-400">bash: command not found: ${cmdText}</span>. Tapez <span class="text-cyan-300 font-mono">'help'</span> pour vous aider.`;
+            }
+
+            terminalBody.appendChild(responseLine);
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+
+        terminalInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = terminalInput.value;
+                runCommand(val);
+                terminalInput.value = '';
+            }
+        });
+
+        function clearTerminal() {
+            terminalBody.innerHTML = '';
+        }
+
+        let isPipelineRunning = false;
+
+        function startPipelineSimulation() {
+            if (isPipelineRunning) return;
+            isPipelineRunning = true;
+
+            const consoleBox = document.getElementById('pipeline-console');
+            const statusLabel = document.getElementById('pipeline-status');
+            const btn = document.getElementById('start-pipeline-btn');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+            consoleBox.innerHTML = '';
+
+            const logs = [
+                { step: 1, text: "[1/6] [Git] Push sur la branche main (commit #a7f92b). Lancement du Pipeline...", delay: 600 },
+                { step: 2, text: "[2/6] [CI Build] Jenkins / GitHub Actions lancés. Execution des tests automatisés...", delay: 1400 },
+                { step: 3, text: "[3/6] [Docker & IaC] Build de l'image Docker & exécution de Terraform Plan sur Azure...", delay: 2300 },
+                { step: 4, text: "[4/6] [GitOps] Argo CD synchronise la configuration du cluster Kubernetes...", delay: 3200 },
+                { step: 5, text: "[5/6] [Kubernetes] Rolling update réussi sur Azure AKS (Zero Downtime)...", delay: 4100 },
+                { step: 6, text: "[6/6] [Observabilité] Prometheus & Grafana : All metrics green, logs envoyés à ELK.", delay: 5000 }
+            ];
+
+            for (let i = 1; i <= 6; i++) {
+                const el = document.getElementById(`step-${i}`);
+                el.className = "glass-card p-4 rounded-xl border border-slate-800 text-center transition-all opacity-50";
+            }
+
+            statusLabel.textContent = "Statut: Pipeline en cours d'exécution...";
+            statusLabel.className = "font-mono text-xs text-amber-400 animate-pulse";
+
+            logs.forEach((item) => {
+                setTimeout(() => {
+                    const line = document.createElement('div');
+                    line.className = "text-cyan-300 font-mono py-0.5 border-b border-slate-800/40";
+                    line.innerHTML = `<span class="text-emerald-400">[SUCCESS]</span> ${item.text}`;
+                    consoleBox.appendChild(line);
+                    consoleBox.scrollTop = consoleBox.scrollHeight;
+
+                    const stepEl = document.getElementById(`step-${item.step}`);
+                    stepEl.className = "glass-card p-4 rounded-xl border-2 border-cyan-400 bg-cyan-500/10 text-center transition-all scale-105 opacity-100 shadow-lg shadow-cyan-500/20";
+                }, item.delay);
+            });
+
+            setTimeout(() => {
+                statusLabel.textContent = "Statut: Déploiement réussi avec succès! (Zero Downtime)";
+                statusLabel.className = "font-mono text-xs text-emerald-400 font-bold";
+
+                btn.disabled = false;
+                btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                isPipelineRunning = false;
+            }, 5600);
+        }
+    </script>
+</body>
+</html>
