@@ -9,8 +9,6 @@ This repository contains a high-tech, interactive single-page portfolio designed
 - **CI/CD Pipeline:** GitHub Actions (Automated build, registry push, and deployment)
 - **GitOps:** Argo CD & Kubernetes
 
-## ⚙️ Local Deployment Quickstart
 
-1. **Build the Docker Image:**
-   ```bash
-   docker build -t devops-portfolio:v1 .
+
+
